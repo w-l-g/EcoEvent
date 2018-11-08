@@ -6,13 +6,16 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  * @ApiResource
  */
-class User
+class User implements UserInterface
 {
+
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -23,20 +26,16 @@ class User
     /**
      * @ORM\Column(type="string", length=100)
      */
-    private $firstName;
-
-    /**
-     * @ORM\Column(type="string", length=100)
-     */
-    private $lastName;
-
-    /**
-     * @ORM\Column(type="string", length=100)
-     */
     private $username;
 
     /**
      * @ORM\Column(type="string", length=100)
+     */
+    private $photoFb;
+
+    /**
+     * @var
+     * @ORM\Column(type="string")
      */
     private $password;
 
@@ -46,9 +45,19 @@ class User
     private $facebookId;
 
     /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $fullName;
+
+    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Survey", mappedBy="user")
      */
     private $surveys;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $roles;
 
     public function __construct()
     {
@@ -58,30 +67,6 @@ class User
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getFirstName(): ?string
-    {
-        return $this->firstName;
-    }
-
-    public function setFirstName(string $firstName): self
-    {
-        $this->firstName = $firstName;
-
-        return $this;
-    }
-
-    public function getLastName(): ?string
-    {
-        return $this->lastName;
-    }
-
-    public function setLastName(string $lastName): self
-    {
-        $this->lastName = $lastName;
-
-        return $this;
     }
 
     public function getUsername(): ?string
@@ -96,14 +81,14 @@ class User
         return $this;
     }
 
-    public function getPassword(): ?string
+    public function getPhotoFb(): ?string
     {
-        return $this->password;
+        return $this->photoFb;
     }
 
-    public function setPassword(string $password): self
+    public function setPhotoFb(string $photoFb): self
     {
-        $this->password = $password;
+        $this->photoFb = $photoFb;
 
         return $this;
     }
@@ -149,5 +134,77 @@ class User
         }
 
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    /**
+     * @param mixed $password
+     */
+    public function setPassword($password): void
+    {
+        $this->password = $password;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFullName()
+    {
+        return $this->fullName;
+    }
+
+    /**
+     * @param mixed $fullName
+     */
+    public function setFullName($fullName): void
+    {
+        $this->fullName = $fullName;
+    }
+
+    /**
+     *
+     * @return  (Role|string)[] The user roles
+     */
+    public function getRoles()
+    {
+        return [$this->roles];
+    }
+
+    /**
+     * Returns the salt that was originally used to encode the password.
+     *
+     * This can return null if the password was not encoded using a salt.
+     *
+     * @return string|null The salt
+     */
+    public function getSalt()
+    {
+        return null;
+    }
+
+    /**
+     * Removes sensitive data from the user.
+     *
+     * This is important if, at any given point, sensitive information like
+     * the plain-text password is stored on this object.
+     */
+    public function eraseCredentials()
+    {
+        return null;
+    }
+
+    /**
+     * @param mixed $roles
+     */
+    public function setRoles($roles): void
+    {
+        $this->roles = $roles;
     }
 }

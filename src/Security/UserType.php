@@ -5,40 +5,25 @@ namespace App\Security;
 use Symfony\Component\Security\Core\User\EquatableInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-class UserType implements UserInterface, EquatableInterface
+class UserType implements UserInterface
 {
 
     private $id;
 
-    private $firstName;
-
-    private $lastName;
-
-    private $password;
+    private $name;
 
     private $role;
 
-    public function __construct($id, $firstName, $lastName, $password, $role)
+    private $password;
+
+    public function __construct($id, $name , $role, $password)
     {
         $this->id = $id;
-        $this->firstName = $firstName;
-        $this->lastName = $lastName;
-        $this->password = $password;
+        $this->name = $name;
         $this->role = $role;
+        $this->password = $password;
     }
 
-    /**
-     * The equality comparison should neither be done by referential equality
-     * nor by comparing identities (i.e. getId() === getId()).
-     *
-     * However, you do not need to compare every attribute, but only those that
-     * are relevant for assessing whether re-authentication is required.
-     *
-     * @return bool
-     */
-    public function isEqualTo(UserInterface $user)
-    {
-    }
 
     /**
      * Returns the roles granted to the user.
@@ -52,11 +37,11 @@ class UserType implements UserInterface, EquatableInterface
      * and populated in any number of different ways when the user object
      * is created.
      *
-     * @return (Role|string)[] The user roles
+     * @return  (Role|string)[] The user roles
      */
     public function getRoles()
     {
-        // TODO: Implement getRoles() method.
+        return $this->role;
     }
 
     /**
@@ -69,7 +54,7 @@ class UserType implements UserInterface, EquatableInterface
      */
     public function getPassword()
     {
-        // TODO: Implement getPassword() method.
+        return $this->getPassword();
     }
 
     /**
@@ -81,7 +66,7 @@ class UserType implements UserInterface, EquatableInterface
      */
     public function getSalt()
     {
-        // TODO: Implement getSalt() method.
+        return null;
     }
 
     /**
@@ -91,7 +76,7 @@ class UserType implements UserInterface, EquatableInterface
      */
     public function getUsername()
     {
-        // TODO: Implement getUsername() method.
+        return $this->getUsername();
     }
 
     /**
@@ -102,6 +87,6 @@ class UserType implements UserInterface, EquatableInterface
      */
     public function eraseCredentials()
     {
-        // TODO: Implement eraseCredentials() method.
+        return null;
     }
 }

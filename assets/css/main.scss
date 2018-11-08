@@ -1,0 +1,54 @@
+$blue: #27D0FF;
+$indigo: #6610f2;
+$purple: #6f42c1;
+$pink: #e83e8c;
+$red: #dc3545;
+$orange: #ffc66c;
+$yellow: #ffc107;
+$green: #44BBA4;
+$green-light: #6DCAB8;
+$blue-light: #97E8FF;
+$blue-dark: #3d5e7d;
+$green-dark: #0b5849;
+$teal: #D3D0CB;
+$cyan: #17a2b8;
+$warning-light: #ffd087;
+$warning-extra-light: #ffffd6;
+$light-gray: #797474;
+$gray-2: #5B5555;
+$blue-dark-light: #527392;
+$green-extra-light: #cbebe5;
+$black: #000000;
+
+$theme-colors: ();
+$theme-colors: map-merge((
+        "primary": $green,
+        "secondary":#66BCAB,
+        "success": $green,
+        "info": $teal,
+        "warning": $orange,
+        "danger": $red,
+        "blue": $blue,
+        "blue-light": $blue-light,
+        "green-light": $green-light,
+        "warning-light": $warning-light,
+        "light-gray": $light-gray,
+        "blue-dark": $blue-dark,
+        "blue-dark-light": $blue-dark-light,
+        "dark": $blue,
+        "gray": #dadada,
+        "gray-1": #A1A1A1,
+        "gray-2": #5B5555,
+        "green-extra-light": $green-extra-light,
+        "green-dark": $green-dark,
+        "green-1": #e2f4f1,
+        "black": #000,
+        "danger-dark" : #C82333,
+), $theme-colors);
+
+
+@import "../../node_modules/bootstrap/scss/bootstrap.scss";
+
+body {
+    background-color: lightgray;
+}

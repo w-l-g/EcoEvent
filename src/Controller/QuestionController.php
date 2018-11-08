@@ -14,30 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class QuestionController extends AbstractController
 {
 
-    /**
-     * @Route("/begin-survey/{eventId}/{type}", name="begin-survey")
-     * @param $eventId
-     * @param $type
-     * @param EntityManagerInterface $em
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    public function beginSurvey($eventId, $type, EntityManagerInterface $em)
-    {
-        /** @var User $user */
-        $user = $em->getRepository('App:User')->find($this->getUser()->getId());
-        $survey = new Survey();
-        $survey->setEvent($eventId);
-        $survey->setUser($user);
-        $survey->setCreatedAt(new \DateTime('now'));
-        $em->persist($survey);
-        $em->flush();
 
-        $questions = $em->getRepository('App:Question')->findBy([
-            'type' => $type
-        ]);
-
-        return new JsonResponse($questions);
-    }
 
     /**
      * @Route("/add-response", name="begin-survey")
@@ -63,7 +40,7 @@ class QuestionController extends AbstractController
      * @param $userId
      * @param EntityManagerInterface $em
      * @return JsonResponse
-     * @Route("/surveys/{userId})
+     * @Route("/surveys/{userId}")
      */
     public function giveSurveys($userId, EntityManagerInterface $em)
     {

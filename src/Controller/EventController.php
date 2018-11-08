@@ -10,6 +10,10 @@ use App\Service\FacebookEvent;
 class EventController extends AbstractController
 {
     /**
+     * @Route("/
+     */
+
+    /**
      * @Route("/events", name="event")
      */
     public function list(FacebookEvent $fbEvent)
