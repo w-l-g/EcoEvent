@@ -14,14 +14,14 @@ use Symfony\Component\Routing\Annotation\Route;
 class QuestionController extends AbstractController
 {
 
-
     /**
      * @Route("/begin-survey/{eventId}/{type}", name="begin-survey")
      * @param $eventId
+     * @param $type
      * @param EntityManagerInterface $em
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function index($eventId, $type, EntityManagerInterface $em)
+    public function beginSurvey($eventId, $type, EntityManagerInterface $em)
     {
         /** @var User $user */
         $user = $em->getRepository('App:User')->find($this->getUser()->getId());
@@ -58,5 +58,19 @@ class QuestionController extends AbstractController
         return new JsonResponse(['valid' => true]);
     }
 
+
+    /**
+     * @param $userId
+     * @param EntityManagerInterface $em
+     * @return JsonResponse
+     * @Route("/surveys/{userId})
+     */
+    public function giveSurveys($userId, EntityManagerInterface $em)
+    {
+        $surveys = $em->getRepository('App:Survey')->findBy([
+            'user' => $userId
+        ]);
+        return new JsonResponse($surveys);
+    }
 
 }
