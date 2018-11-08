@@ -8,10 +8,24 @@ use Symfony\Component\Security\Core\User\UserInterface;
 class UserType implements UserInterface, EquatableInterface
 {
 
+    private $id;
 
-    private $eoizer;
+    private $firstName;
 
+    private $lastName;
 
+    private $password;
+
+    private $role;
+
+    public function __construct($id, $firstName, $lastName, $password, $role)
+    {
+        $this->id = $id;
+        $this->firstName = $firstName;
+        $this->lastName = $lastName;
+        $this->password = $password;
+        $this->role = $role;
+    }
 
     /**
      * The equality comparison should neither be done by referential equality

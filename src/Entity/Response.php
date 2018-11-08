@@ -22,7 +22,7 @@ class Response
      * @ORM\ManyToOne(targetEntity="App\Entity\Survey", inversedBy="responses")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $questionnaire;
+    private $survey;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Question", inversedBy="responses")
@@ -42,14 +42,14 @@ class Response
         return $this->id;
     }
 
-    public function getQuestionnaire(): ?Survey
+    public function getSurvey(): ?Survey
     {
-        return $this->questionnaire;
+        return $this->survey;
     }
 
-    public function setQuestionnaire(?Survey $questionnaire): self
+    public function setSurvey(?Survey $survey): self
     {
-        $this->questionnaire = $questionnaire;
+        $this->survey = $survey;
 
         return $this;
     }

@@ -32,12 +32,12 @@ class Survey
     private $created_at;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Response", mappedBy="questionnaire")
+     * @ORM\OneToMany(targetEntity="App\Entity\Response", mappedBy="survey")
      */
     private $responses;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Event", inversedBy="questionnaires")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Event", inversedBy="surveys")
      * @ORM\JoinColumn(nullable=false)
      */
     private $event;
@@ -88,7 +88,7 @@ class Survey
     {
         if (!$this->responses->contains($response)) {
             $this->responses[] = $response;
-            $response->setQuestionnaire($this);
+            $response->setSurvey($this);
         }
 
         return $this;
@@ -99,8 +99,8 @@ class Survey
         if ($this->responses->contains($response)) {
             $this->responses->removeElement($response);
             // set the owning side to null (unless already changed)
-            if ($response->getQuestionnaire() === $this) {
-                $response->setQuestionnaire(null);
+            if ($response->getSurvey() === $this) {
+                $response->setSurvey(null);
             }
         }
 
