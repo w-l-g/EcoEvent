@@ -38,7 +38,7 @@ class Event
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Survey", mappedBy="event")
      */
-    private $questionnaires;
+    private $surveys;
 
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\Analysis", mappedBy="event", cascade={"persist", "remove"})
@@ -47,7 +47,7 @@ class Event
 
     public function __construct()
     {
-        $this->questionnaires = new ArrayCollection();
+        $this->surveys = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -94,15 +94,15 @@ class Event
     /**
      * @return Collection|Survey[]
      */
-    public function getQuestionnaires(): Collection
+    public function getSurveys(): Collection
     {
-        return $this->questionnaires;
+        return $this->surveys;
     }
 
     public function addQuestionnaire(Survey $questionnaire): self
     {
-        if (!$this->questionnaires->contains($questionnaire)) {
-            $this->questionnaires[] = $questionnaire;
+        if (!$this->surveys->contains($questionnaire)) {
+            $this->surveys[] = $questionnaire;
             $questionnaire->setEvent($this);
         }
 
@@ -111,8 +111,8 @@ class Event
 
     public function removeQuestionnaire(Survey $questionnaire): self
     {
-        if ($this->questionnaires->contains($questionnaire)) {
-            $this->questionnaires->removeElement($questionnaire);
+        if ($this->surveys->contains($questionnaire)) {
+            $this->surveys->removeElement($questionnaire);
             // set the owning side to null (unless already changed)
             if ($questionnaire->getEvent() === $this) {
                 $questionnaire->setEvent(null);

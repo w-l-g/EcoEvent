@@ -13,6 +13,10 @@ use ApiPlatform\Core\Annotation\ApiResource;
  */
 class Question
 {
+
+    const TYPE_NINJA = 0;
+
+    const TYPE_INVESTIGATOR = 1;
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -35,7 +39,6 @@ class Question
      * @ORM\JoinColumn(nullable=false)
      */
     private $rubric;
-
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Response", mappedBy="question")

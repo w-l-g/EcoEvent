@@ -8,7 +8,7 @@ use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 
-class UserProvider implements UserProviderInterface
+class FacebookProvider implements UserProviderInterface
 {
     private $em;
 
@@ -29,10 +29,10 @@ class UserProvider implements UserProviderInterface
      *
      * @throws UsernameNotFoundException if the user is not found
      */
-    public function loadUserByUsername($username)
+    public function loadUserByUsername($credentials)
     {
         $results = $this->em->getRepository('App:User')->findBy([
-            'username' => $username
+            'facebookId' => $username
         ]);
 
         if (count($results) == 0) {
