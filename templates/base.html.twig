@@ -19,17 +19,27 @@
             </button>
             <div class="navbar-collapse collapse" id="navbarColor01" style="">
                 <ul class="navbar-nav mr-auto">
+
+                    {% if menu == 'event' %}
                     <li class="nav-item active">
-                        <a class="nav-link" href="#"><i class="fa fa-home mr-2"></i>Accueil <span
-                                    class="sr-only"></span></a>
-                    </li>
+                {% else %}
                     <li class="nav-item">
+                        {% endif %}
                         <a class="nav-link" href="{{ path('adminEvents') }}"><i class="fa fa-calendar mr-2"></i>Évènements</a>
                     </li>
+
+                    {% if menu == 'question' %}
+                    <li class="nav-item active">
+                {% else %}
                     <li class="nav-item">
+                        {% endif %}
                         <a class="nav-link" href="{{ path('adminQuestions') }}"><i class="fa fa-question mr-2"></i>Questions</a>
                     </li>
+                    {% if menu == 'stat' %}
+                    <li class="nav-item active">
+                        {% else %}
                     <li class="nav-item">
+                        {% endif %}
                         <a class="nav-link" href="{{ path('adminStats') }}"><i class="fa fa-area-chart mr-2"></i>
                             Statistiques</a>
                     </li>

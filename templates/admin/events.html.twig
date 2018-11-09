@@ -5,7 +5,7 @@
         <div class="col">
             <div class="row">
                 <div class="col mb-4">
-                    <a class="btn btn-primary font-weight-light" href="#">
+                    <a class="btn btn-primary font-weight-light" href="{{ path('adminAddEvent') }}">
                         <i class="fa fa-plus mr-3"></i>
                         Ajouter un évènement
                     </a>
@@ -27,7 +27,7 @@
                 {% for event in events %}
                     <tr>
                         <th scope="row">{{ event.name }}</th>
-                        <td>{{ event.date }}</td>
+                        <td>{{ event.date.format('d/m/Y') }}</td>
                         <td>{{ event.facebookId }}</td>
                         <td>{{ event.surveys|length }}</td>
                     </tr>
