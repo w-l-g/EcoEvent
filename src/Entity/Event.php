@@ -99,7 +99,7 @@ class Event
         return $this->surveys;
     }
 
-    public function addQuestionnaire(Survey $questionnaire): self
+    public function addQuestionnaire(?Survey $questionnaire): self
     {
         if (!$this->surveys->contains($questionnaire)) {
             $this->surveys[] = $questionnaire;
@@ -109,7 +109,7 @@ class Event
         return $this;
     }
 
-    public function removeQuestionnaire(Survey $questionnaire): self
+    public function removeQuestionnaire(?Survey $questionnaire): self
     {
         if ($this->surveys->contains($questionnaire)) {
             $this->surveys->removeElement($questionnaire);

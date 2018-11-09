@@ -3,12 +3,13 @@ namespace App\DataFixtures;
 
 
 use App\Entity\Question;
-use DateTime;
+use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use DateTime;
 
 
-class AppFixtures
+class AppFixtures extends Fixture
 {
     private $passwordEncoder;
 
@@ -37,7 +38,7 @@ class AppFixtures
     private function getQuestionData(): array
     {
         return [
-            ['Jane', 'Bonchemin', new DateTime('10-10-1990'), 'kitten', 'jane_admin@symfony.com', 'ROLE_ADMIN'],
+            ['Jane', 'Bonchemin', '',new DateTime('10-10-1990'), 'kitten', 'jane_admin@symfony.com', 'ROLE_ADMIN'],
             ['Iwan', 'Le louer', new DateTime('10-10-1990'), 'kitten', 'tom_admin@symfony.com', 'ROLE_ADMIN'],
             ['Dylan', 'Conin', new DateTime('10-10-1990'), 'kitten', 'john_user@symfony.com', 'ROLE_USER'],
             ['Aymeric', 'Pinault', new DateTime('10-10-1990'), 'a', 'mono', 'ROLE_INSTRUCTOR'],
