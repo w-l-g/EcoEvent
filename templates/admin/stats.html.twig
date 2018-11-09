@@ -2,8 +2,28 @@
 {% block mainContainer %}container{% endblock %}
 {% block body %}
     <div class="row my-5">
-        <div class="col-11 mx-auto text-white">
-            <canvas id="myChart" width="400" height="400"></canvas>
+        <div class="col">
+            <div class="row">
+                <div class="col d-flex justify-content-between text-white mb-5">
+                    <div class="input-group my-auto">
+                        <label for="inputGroupSelect01" class="my-auto mr-3 font-italic">Choisissez un évènement : </label>
+                        <select class="custom-select-eco mr-3" id="inputGroupSelect01">
+                            <option selected>Choisir</option>
+                            <option value="1">Festival des vielles charrues</option>
+                            <option value="2">Festival du bout du monde</option>
+                            <option value="3">Festival interceltique</option>
+                        </select>
+                        <button type="submit" class="btn btn-primary">
+                            Valider
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8 mx-auto">
+                    <canvas id="myChart" width="400" height="400"></canvas>
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}
@@ -16,7 +36,7 @@
                 labels: ["Respect du site", "Déchet", "Alimentation",
                     "Déplacement", "Energie/eau/assainissement", "Accessibilité"],
                 datasets: [{
-                    label: 'Moyenne de la note sur 4',
+                    label: 'Moyenne de la note 4 (Ensemble des évènements)',
                     data: [3, 2, 3.5, 2.3, 2.5, 4],
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',

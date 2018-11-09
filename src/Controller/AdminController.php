@@ -2,8 +2,12 @@
 
 namespace App\Controller;
 
+use App\Entity\Event;
+use App\Entity\Question;
+use App\Form\QuestionType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
@@ -83,4 +87,50 @@ class AdminController extends AbstractController
     {
         return $this->render('admin/stats.html.twig');
     }
+
+    /**
+     * @Route("/add-question", name="adminAddQuestion")
+     * @param EntityManagerInterface $em
+     * @return Response
+     */
+    public function addQuestion(EntityManagerInterface $em, Request $request)
+    {
+        $question = new Question();
+        $form = $this->createForm(QuestionType::class, $question);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()){
+            $question = $form->getData();
+            $em->persist($question);
+            $em->flush();
+            return $this->redirectToRoute('adminQuestions');
+
+        }
+        return $this->render('admin/add-question.html.twig', ['form' => $form->createView()]);
+
+    }
+
+    /**
+     * @Route("/add-event", name="adminAddEvent")
+     * @param EntityManagerInterface $em
+     * @return Response
+     */
+    public function addEvent(EntityManagerInterface $em, Request $request)
+    {
+        $question = new Event();
+        $form = $this->createForm(QuestionType::class, $question);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()){
+            $question = $form->getData();
+            $em->persist($question);
+            $em->flush();
+            return $this->redirectToRoute('adminQuestions');
+
+        }
+        return $this->render('admin/add-question.html.twig', ['form' => $form->createView()]);
+
+    }
+
+
 }

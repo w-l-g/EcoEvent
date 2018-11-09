@@ -2,24 +2,43 @@
 {% block mainContainer %}container{% endblock %}
 {% block body %}
     <div class="row mt-5">
-        <div class="col-11 mx-auto">
-            <h2 class="text-blue"><i class="fa fa-question mr-4"></i>Liste des questions</h2>
+        <div class="col">
+            <div class="row">
+                <div class="col mb-4">
+                    <a class="btn btn-primary font-weight-light" href="{{ path('adminAddQuestion') }}">
+                        <i class="fa fa-plus mr-3"></i>
+                        Ajouter une question
+                    </a>
+                </div>
+            </div>
+            <p class="text-white font-italic">Liste des questions</p>
             <table class="table table-striped">
                 <thead>
                 <tr>
+                    <th scope="col">Numéro</th>
                     <th scope="col">Question</th>
                     <th scope="col">Rubrique</th>
                     <th scope="col">Type</th>
                     <th scope="col">Nombre de réponses</th>
+                    <th scope="col">Action</th>
                 </tr>
                 </thead>
                 <tbody>
                 {% for question in questions %}
-                    <tr>
-                        <th scope="row">{{ question.value }}</th>
+                    <tr class="font-weight-light">
+                        <th>{{ loop.index }}</th>
+                        <th>{{ question.value }}</th>
                         <td>{{ question.rubric }}</td>
                         <td>{{ question.type }}</td>
                         <td>{{ question.responses|length }}</td>
+                        <td>
+                            <a class="btn btn-danger" href="#">
+                                <i class="fa fa-trash"></i>
+                            </a>
+                            <a class="btn btn-primary" href="#">
+                                <i class="fa fa-edit"></i>
+                            </a>
+                        </td>
                     </tr>
                 {% endfor %}
                 </tbody>
