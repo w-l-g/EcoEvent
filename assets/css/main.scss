@@ -45,60 +45,65 @@ $theme-colors: map-merge((
         "danger-dark" : #C82333,
 ), $theme-colors);
 
-
 @import "../../node_modules/bootstrap/scss/bootstrap.scss";
 @import "~bootswatch/dist/darkly/bootswatch";
 @import "~font-awesome/css/font-awesome.min.css";
 
-
 @mixin eco-block($background) {
-    background: $background;
-    -webkit-box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.38);
-    -moz-box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.38);
-    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.38);
-    padding: 15px;
-    border-radius: 10px;
+  background: $background;
+  -webkit-box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.38);
+  -moz-box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.38);
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.38);
+  padding: 15px;
+  border-radius: 10px;
 }
 
 @each $color, $value in $theme-colors {
-    .eco-block-#{$color} {
-        @include eco-block($value);
-    }
+  .eco-block-#{$color} {
+    @include eco-block($value);
+  }
 }
 
 body {
-    background: theme-color("dark");
+  background: theme-color("dark");
 }
 
 .custom-input {
-    background: none;
-    border: none;
-    border-bottom: 1px solid #fff;
-    color: white;
+  background: none;
+  border: none;
+  border-bottom: 1px solid #fff;
+  color: white;
 }
+
 .custom-select-eco {
-    @extend .custom-select;
-    background: none;
-    border: none;
-    border-bottom: 1px solid #fff;
-    color: white;
+  @extend .custom-select;
+  background: none;
+  border: none;
+  border-bottom: 1px solid #fff;
+  color: white;
 }
+
 .custom-input::placeholder {
-    color: white;
+  color: white;
 }
 
 .navbar {
-    border-bottom: 1px solid #a0747F;
-    background: theme-color("dark") !important;
+  border-bottom: 1px solid #a0747F;
+  background: theme-color("dark") !important;
 }
+
 .table {
-    color: theme-color("primary");
-    border: 1px solid white;
-    border-left-style: none;
-    border-right-style: none;
+  color: theme-color("primary");
+  border: 1px solid white;
+  border-left-style: none;
+  border-right-style: none;
 }
 
 .z-1000 {
-    z-index: 1000;
+  z-index: 1000;
+}
+
+h1 {
+  font-family: 'Righteous', cursive;
 }
 
