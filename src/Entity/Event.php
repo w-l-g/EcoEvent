@@ -26,7 +26,7 @@ class Event
     private $name;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string")
      */
     private $facebookId;
 
@@ -67,12 +67,12 @@ class Event
         return $this;
     }
 
-    public function getFacebookId(): ?int
+    public function getFacebookId(): ?string
     {
         return $this->facebookId;
     }
 
-    public function setFacebookId(int $facebookId): self
+    public function setFacebookId(string $facebookId): self
     {
         $this->facebookId = $facebookId;
 

@@ -42,7 +42,7 @@ security:
             form_login:
                 login_path: adminLogin
                 check_path: adminLogin
-                default_target_path: adminDashboard
+                default_target_path: adminEvents
             logout:
                 path:   adminLogout
                 target: adminLogin

@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Event;
 use App\Entity\Question;
+use App\Form\EventType;
 use App\Form\QuestionType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -43,18 +44,6 @@ class AdminController extends AbstractController
     }
 
 
-
-    /**
-     * @Route("/dashboard", name="adminDashboard")
-     *
-     */
-    public function dashboard()
-    {
-        return $this->render('admin/index.html.twig', [
-
-        ]);
-    }
-
     /**
      * @Route("/events", name="adminEvents")
      * @param EntityManagerInterface $em
@@ -64,7 +53,7 @@ class AdminController extends AbstractController
     {
         $events = $em->getRepository('App:Event')->findAll();
 
-        return $this->render('admin/events.html.twig', ['events' => $events]);
+        return $this->render('admin/events.html.twig', ['events' => $events, 'menu' => 'event']);
     }
 
     /**
@@ -75,7 +64,7 @@ class AdminController extends AbstractController
     public function showQuestions(EntityManagerInterface $em)
     {
         $questions = $em->getRepository('App:Question')->findAll();
-        return $this->render('admin/questions.html.twig', ['questions' => $questions]);
+        return $this->render('admin/questions.html.twig', ['questions' => $questions, 'menu' => 'question']);
     }
 
     /**
@@ -85,7 +74,7 @@ class AdminController extends AbstractController
      */
     public function adminStats(EntityManagerInterface $em)
     {
-        return $this->render('admin/stats.html.twig');
+        return $this->render('admin/stats.html.twig', ['menu' => 'stat']);
     }
 
     /**
@@ -106,29 +95,30 @@ class AdminController extends AbstractController
             return $this->redirectToRoute('adminQuestions');
 
         }
-        return $this->render('admin/add-question.html.twig', ['form' => $form->createView()]);
+        return $this->render('admin/add-question.html.twig', ['form' => $form->createView(), 'menu' => 'question']);
 
     }
 
     /**
      * @Route("/add-event", name="adminAddEvent")
      * @param EntityManagerInterface $em
+     * @param Request $request
      * @return Response
      */
     public function addEvent(EntityManagerInterface $em, Request $request)
     {
-        $question = new Event();
-        $form = $this->createForm(QuestionType::class, $question);
+        $event = new Event();
+        $form = $this->createForm(EventType::class, $event);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()){
-            $question = $form->getData();
-            $em->persist($question);
+            $event = $form->getData();
+            $em->persist($event);
             $em->flush();
-            return $this->redirectToRoute('adminQuestions');
+            return $this->redirectToRoute('adminEvents');
 
         }
-        return $this->render('admin/add-question.html.twig', ['form' => $form->createView()]);
+        return $this->render('admin/add-event.html.twig', ['form' => $form->createView(),  'menu' => 'event']);
 
     }
 
