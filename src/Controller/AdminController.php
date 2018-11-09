@@ -68,6 +68,17 @@ class AdminController extends AbstractController
     }
 
     /**
+     * @Route("/surveys", name="adminSurveys")
+     * @param EntityManagerInterface $em
+     * @return Response
+     */
+    public function showSurveys(EntityManagerInterface $em)
+    {
+        $surveys = $em->getRepository('App:Survey')->findAll();
+        return $this->render('admin/surveys.html.twig', ['surveys' => $surveys, 'menu' => 'survey']);
+    }
+
+    /**
      * @Route("/statistiques", name="adminStats")
      * @param EntityManagerInterface $em
      * @return Response
