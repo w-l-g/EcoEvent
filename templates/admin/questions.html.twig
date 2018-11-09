@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+{% block mainContainer %}container{% endblock %}
+{% block body %}
+    <div class="row mt-5">
+        <div class="col-11 mx-auto">
+            <h2 class="text-blue"><i class="fa fa-question mr-4"></i>Liste des questions</h2>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th scope="col">Question</th>
+                    <th scope="col">Rubrique</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Nombre de réponses</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for question in questions %}
+                    <tr>
+                        <th scope="row">{{ question.value }}</th>
+                        <td>{{ question.rubric }}</td>
+                        <td>{{ question.type }}</td>
+                        <td>{{ question.responses|length }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            {% if questions is empty %}
+                <div class="alert alert-gray-1">
+                    <i class="fa fa-info mr-2"></i>
+                    Aucune question n'a été renseignée.
+
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

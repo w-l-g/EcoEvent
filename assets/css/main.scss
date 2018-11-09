@@ -22,11 +22,12 @@ $black: #000000;
 
 $theme-colors: ();
 $theme-colors: map-merge((
-        "primary": $green,
+        "primary": #1Ebd89,
         "secondary":#abff4f,
         "info": #08bdbd,
         "warning": $orange,
         "danger": $red,
+        "dark": #202624,
         "blue": $blue,
         "blue-light": $blue-light,
         "green-light": $green-light,
@@ -34,7 +35,6 @@ $theme-colors: map-merge((
         "light-gray": $light-gray,
         "blue-dark": $blue-dark,
         "blue-dark-light": $blue-dark-light,
-        "dark": $blue,
         "gray": #dadada,
         "gray-1": #A1A1A1,
         "gray-2": #3C4859,
@@ -64,4 +64,23 @@ $theme-colors: map-merge((
     .eco-block-#{$color} {
         @include eco-block($value);
     }
+}
+
+body {
+    background: theme-color("dark");
+}
+
+.custom-input {
+    background: none;
+    border: none;
+    border-bottom: 1px solid #fff;
+    color: white;
+}
+.custom-input::placeholder {
+    color: white;
+}
+
+.navbar {
+    border-bottom: 1px solid #a0747F;
+    background: theme-color("dark") !important;
 }

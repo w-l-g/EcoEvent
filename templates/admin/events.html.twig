@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+{% block mainContainer %}container{% endblock %}
+{% block body %}
+    <div class="row my-5">
+        <div class="col">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Lien Facebook</th>
+                    <th scope="col">Nombre de questionnaire sur l'évènement</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                {% for event in events %}
+                    <tr>
+                        <th scope="row">{{ event.name }}</th>
+                        <td>{{ event.date }}</td>
+                        <td>{{ event.facebookId }}</td>
+                        <td>{{ event.surveys|length }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            {% if events is empty %}
+
+                <div class="alert alert-gray-1">
+                    <i class="fa fa-info mr-2"></i>
+                    Aucun évènement n'a été renseigné.
+
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

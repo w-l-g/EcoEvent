@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -48,5 +49,38 @@ class AdminController extends AbstractController
         return $this->render('admin/index.html.twig', [
 
         ]);
+    }
+
+    /**
+     * @Route("/events", name="adminEvents")
+     * @param EntityManagerInterface $em
+     * @return Response
+     */
+    public function showEvents(EntityManagerInterface $em)
+    {
+        $events = $em->getRepository('App:Event')->findAll();
+
+        return $this->render('admin/events.html.twig', ['events' => $events]);
+    }
+
+    /**
+     * @Route("/questions", name="adminQuestions")
+     * @param EntityManagerInterface $em
+     * @return Response
+     */
+    public function showQuestions(EntityManagerInterface $em)
+    {
+        $questions = $em->getRepository('App:Question')->findAll();
+        return $this->render('admin/questions.html.twig', ['questions' => $questions]);
+    }
+
+    /**
+     * @Route("/statistiques", name="adminStats")
+     * @param EntityManagerInterface $em
+     * @return Response
+     */
+    public function adminStats(EntityManagerInterface $em)
+    {
+        return $this->render('admin/stats.html.twig');
     }
 }

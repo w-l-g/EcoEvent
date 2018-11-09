@@ -14,8 +14,6 @@ use Symfony\Component\Routing\Annotation\Route;
 class QuestionController extends AbstractController
 {
 
-
-
     /**
      * @Route("/add-response", name="begin-survey")
      * @param Request $request

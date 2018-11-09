@@ -17,6 +17,8 @@ class Question
     const TYPE_NINJA = 0;
 
     const TYPE_INVESTIGATOR = 1;
+
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -35,8 +37,7 @@ class Question
     private $type;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Rubric", inversedBy="questions", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\Column(type="string", length=255)
      */
     private $rubric;
 
@@ -79,12 +80,12 @@ class Question
         return $this;
     }
 
-    public function getRubric(): ?Rubric
+    public function getRubric(): ?string
     {
         return $this->rubric;
     }
 
-    public function setRubric(Rubric $rubric): self
+    public function setRubric(string $rubric): self
     {
         $this->rubric = $rubric;
 
