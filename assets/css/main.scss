@@ -76,6 +76,13 @@ body {
     border-bottom: 1px solid #fff;
     color: white;
 }
+.custom-select-eco {
+    @extend .custom-select;
+    background: none;
+    border: none;
+    border-bottom: 1px solid #fff;
+    color: white;
+}
 .custom-input::placeholder {
     color: white;
 }
@@ -84,3 +91,10 @@ body {
     border-bottom: 1px solid #a0747F;
     background: theme-color("dark") !important;
 }
+.table {
+    color: theme-color("primary");
+    border: 1px solid white;
+    border-left-style: none;
+    border-right-style: none;
+}
+
