@@ -6,3 +6,4 @@
  */
 
 // any CSS you require will output into a single css file (main.scss in this case)
+require('bootstrap');

@@ -4,17 +4,50 @@ security:
             entity:
                 class: App\Entity\User
                 property: username
+
+        in_memory:
+            memory:
+                users:
+                    admin:
+                        password: 123
+                        roles: ['ROLE_ADMIN']
+        AdminProvider:
+            entity:
+                class: App\Entity\Admin
+                property: username
+
+     #   AdminProvider:
+      #      entity:
+       #         class: App\Entity\Admin
+        #        property: username
+
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     encoders:
         # use your user class name here
+        App\Entity\Admin:
+            algorithm: bcrypt
+
         App\Entity\User: plaintext
+       # App\Entity\Admin: plaintext
             # bcrypt or argon2i are recommended
             # argon2i is more secure, but requires PHP 7.2 or the Sodium extension
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
+        admin:
+            pattern: ^/admin
+            anonymous: true
+            provider: AdminProvider
+            form_login:
+                login_path: adminLogin
+                check_path: adminLogin
+                default_target_path: adminDashboard
+            logout:
+                path:   adminLogout
+                target: adminLogin
         main:
+            pattern: ^/pi
             anonymous: ~
             provider: UserProvider
             json_login:
@@ -36,5 +69,5 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-         - { path: ^/admin, roles: ROLE_ADMIN }
-         - { path: ^/api, roles: ROLE_USER }
+        # - { path: ^/admin, roles: ROLE_ADMIN }
+         #- { path: ^/api, roles: ROLE_USER }

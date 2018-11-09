@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+{% block login %}
+                <form action="{{ path('adminLogin') }}" method="post" class="d-flex justify-content-between">
+                    {% if error %}
+                        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                    {% endif %}
+
+                    <input type="text" id="username" name="_username" value="{{ last_username }}" class="form-control m-2" placeholder="Email" required autofocus>
+                    <input type="password" id="password" name="_password" class="form-control m-2" placeholder="Password" required>
+
+                    <input type="hidden" name="_csrf_token"
+                           value="{{ csrf_token('authenticate') }}">
+                    <button class="btn btn-primary h-50 my-auto" type="submit">
+                        se connecter
+                    </button>
+                </form>
+{% endblock %}

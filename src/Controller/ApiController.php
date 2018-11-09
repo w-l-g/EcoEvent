@@ -11,7 +11,12 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
-class DefaultController extends Controller
+/**
+ * Class ApiController
+ * @package App\Controller
+ * @Route("/api")
+ */
+class ApiController extends Controller
 {
     /**
      * @Route("/register", name="register")
@@ -64,6 +69,7 @@ class DefaultController extends Controller
             'user' => $this->getUser()->getId()
         ]);
 
+        // todo : redirect to choiceevents
 
         if (count($surveys) == 0){
             return $this->redirectToRoute('beginSurvey');
@@ -72,6 +78,11 @@ class DefaultController extends Controller
         }
 
     }
+
+
+    /**
+     * #
+     */
 
 
 }

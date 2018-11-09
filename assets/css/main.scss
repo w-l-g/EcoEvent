@@ -2,10 +2,10 @@ $blue: #27D0FF;
 $indigo: #6610f2;
 $purple: #6f42c1;
 $pink: #e83e8c;
-$red: #dc3545;
-$orange: #ffc66c;
+$red: #f21b3f;
+$orange: #ff9914;
 $yellow: #ffc107;
-$green: #44BBA4;
+$green: #29bf12;
 $green-light: #6DCAB8;
 $blue-light: #97E8FF;
 $blue-dark: #3d5e7d;
@@ -23,9 +23,8 @@ $black: #000000;
 $theme-colors: ();
 $theme-colors: map-merge((
         "primary": $green,
-        "secondary":#66BCAB,
-        "success": $green,
-        "info": $teal,
+        "secondary":#abff4f,
+        "info": #08bdbd,
         "warning": $orange,
         "danger": $red,
         "blue": $blue,
@@ -38,7 +37,7 @@ $theme-colors: map-merge((
         "dark": $blue,
         "gray": #dadada,
         "gray-1": #A1A1A1,
-        "gray-2": #5B5555,
+        "gray-2": #3C4859,
         "green-extra-light": $green-extra-light,
         "green-dark": $green-dark,
         "green-1": #e2f4f1,
@@ -48,7 +47,21 @@ $theme-colors: map-merge((
 
 
 @import "../../node_modules/bootstrap/scss/bootstrap.scss";
+@import "~bootswatch/dist/darkly/bootswatch";
+@import "~font-awesome/css/font-awesome.min.css";
 
-body {
-    background-color: lightgray;
+
+@mixin eco-block($background) {
+    background: $background;
+    -webkit-box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.38);
+    -moz-box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.38);
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.38);
+    padding: 15px;
+    border-radius: 10px;
+}
+
+@each $color, $value in $theme-colors {
+    .eco-block-#{$color} {
+        @include eco-block($value);
+    }
 }
