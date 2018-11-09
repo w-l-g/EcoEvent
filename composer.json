@@ -77,6 +77,8 @@
             "php bin/console cache:clear",
             "php bin/console cache:warmup",
             "yarn",
+            "php bin/console addAdmin",
+            "php bin/console doc:fix:load",
             "yarn run encore production"
         ],
         "start": "php bin/console server:run"
