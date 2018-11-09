@@ -14,6 +14,6 @@ class EventController extends AbstractController
      */
     public function list(FacebookEvent $fbEvent)
     {
-        return $this->render('admin/index.html.twig');
+        return $this->render('admin/events.html.twig');
     }
 }
