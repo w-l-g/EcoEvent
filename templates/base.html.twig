@@ -35,14 +35,23 @@
                         {% endif %}
                         <a class="nav-link" href="{{ path('adminQuestions') }}"><i class="fa fa-question mr-2"></i>Questions</a>
                     </li>
+                    {% if menu == 'survey' %}
+                    <li class="nav-item active">
+                {% else %}
+                    <li class="nav-item">
+                        {% endif %}
+                        <a class="nav-link" href="{{ path('adminSurveys') }}"><i class="fa fa-archive mr-2"></i>
+                            Questionnaires</a>
+                    </li>
                     {% if menu == 'stat' %}
                     <li class="nav-item active">
-                        {% else %}
+                {% else %}
                     <li class="nav-item">
                         {% endif %}
                         <a class="nav-link" href="{{ path('adminStats') }}"><i class="fa fa-area-chart mr-2"></i>
                             Statistiques</a>
                     </li>
+
                     <li class="nav-item">
                         <a class="nav-link" href="{{ path('adminLogout') }}"><i class="fa fa-power-off mr-2"></i>
                             Déconnexion</a>

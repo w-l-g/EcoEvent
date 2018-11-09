@@ -47,7 +47,7 @@ security:
                 path:   adminLogout
                 target: adminLogin
         main:
-            pattern: ^/pi
+            pattern: ^/api
             anonymous: ~
             provider: UserProvider
             json_login:

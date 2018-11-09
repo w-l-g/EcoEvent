@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+{% block mainContainer %}container{% endblock %}
+{% block body %}
+    <div class="row mt-5">
+        <div class="col">
+            <p class="text-white font-italic">Liste des questionnaires</p>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th scope="col">Numéro</th>
+                    <th scope="col">Utilisateur</th>
+                    <th scope="col">Date de création</th>
+                    <th scope="col">Nombre de réponses</th>
+                    <th scope="col">Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for survey in surveys %}
+                    <tr class="font-weight-light">
+                        <th>{{ loop.index }}</th>
+                        <th>{{ survey.user.username }}</th>
+                        <td>{{ survey.created_at }}</td>
+                        <td>{{ survey.responses|length }}</td>
+                        <td>{{ survey.event.name }}</td>
+                        <td>
+                            <a href="#">
+                                <i class="fa fa-eye"></i>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            {% if surveys is empty %}
+                <div class="alert alert-info">
+                    <i class="fa fa-info mr-2"></i>
+                    Aucun questionnaire n'a été renseigné.
+
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

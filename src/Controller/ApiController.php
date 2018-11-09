@@ -60,7 +60,7 @@ class ApiController extends Controller
      */
     public function redirectUser(EntityManagerInterface $em)
     {
-        //!\\ TODO :  Pour se logger la requete doit contenir en json  {"email" : "ze", "token" : "mm"},
+        //!\\ TODO :  Pour se logger la requete doit contenir en json  {"username" : "ze", "password" : "mm"},
             // TODO : ou alors on change dans la config avec "password_path: email", pas testé à voir
 
         // Check : si le usr a des surveys -> listes des surveys Sinon -> liste des questions disponibles
