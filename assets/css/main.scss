@@ -63,7 +63,9 @@ $theme-colors: map-merge((
     @include eco-block($value);
   }
 }
-
+body {
+  font-size: 20px;
+}
 body {
   background: theme-color("dark");
 }
